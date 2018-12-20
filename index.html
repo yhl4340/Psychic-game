@@ -20,41 +20,58 @@
 
         <script type="text/javascript">
         //create an arry for all the possible options for computer's guess
+
+        // var compGuess = ['a','e','i', 'o','u']; this is to test if the wins works
+
         var compGuess = ['a','b','c','d','f','g','h','i','j','k','l','m','n','o','p','q',
             'r','s','t','u','v','w','x','y','z'];
+        
 
         //create var to store numbers of wins, loses, guess left and user's guess so far
         var wins = 0;
-        var loses = 0;
+        var losses = 0;
         var guessLeft ='';
         var yourGuess = '';
+        var totalGames = 5;
 
         //to show users how many wins, losese, guesses left and their guess so far, will need var that allow us to print or output the result
         var winsText =document.getElementById('win-text');
         var losesText = document.getElementById('lose-text');
         var yourGuessText = document.getElementById('your-guess-text');
         var guessLeftText = document.getElementById('guess-left-text');
-
-        // this function funs when the user types on keyboard. the value of users guess will be stored as the userGuess var
-        document.onkeyup = function(event) {
-            var userGuess = event.key;
-        } 
-        console.log(userGuess);
-
-        //comp randomly chooses a letter from the compGuess array
-        var compChoice = compGuess[Math.floor(Math.random()* compGuess.length)];
         
-        //user has 5 chances to guess.
-        for (var i = 1; i < 5; i++) {
+        var start = confirm('ready to play? ');
+        var startNow = alert('press any key to start');
+        // this function runs when the user types on keyboard. the value of users guess will be stored as the userGuess var
+        document.onkeyup = function(event) {
+         var userGuess = event.key;   
+         //comp randomly chooses a letter from the compGuess array
+        var compChoice = compGuess[Math.floor(Math.random()* compGuess.length)];
+
+         //user has 5 chances to guess. maybe it's better not to have the for loop because the for loop loads automatically when the page runs. we don't know when the user will press a key. if user presses a key, tracks it. 
+        
         
             if (userGuess === compChoice) {
-                wins++;
-            return 'That\'s right! ' 
+            userGuess.toUpperCase(event.key);
+            alert ('That\'s right! this is your choice ' + userGuess);  
+            alert ('this is what the computer chose: ' + compChoice);
+            winsText.textContent = 'Wins: ' + wins;
+            wins++;
+            
         }else {
-            loses++;
-            return 'Sorry. Keep trying'
+           
+            alert ('Sorry. Keep trying. the computer picked: ' + compChoice); 
+            winsText.textContent = 'Wins: ' + wins;
+            losesText.textContent = 'losses: ' + losses; 
+            losses++;
             }
         };
+          
+           
+       
+       
+        </script>
       </div>
+
   </body>
   </html>
