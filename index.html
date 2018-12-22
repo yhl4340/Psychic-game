@@ -1,87 +1,83 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Psychic Game</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Psychic Game</title>
   </head>
   <body>
     <h1>The Psychic Game</h1>
-    <h3> Guess what I am thinking of ( other than coffee, of course!)</h3>
+    <h3>Guess what I am thinking of ( other than coffee, of course!)</h3>
     <div>
-        <p id='user-text'></p>
-        <p id ='comp-text'></p>
-        <p id ='win-text'></p>
-        <p id ='lose-text'></p>
-        <p id ='guess-left-text'></p>
-        <p id ='your-guess-text'></p>
-        <p id ='total-text'></p>
+      <p id="user-text"></p>
+      <p id="comp-text"></p>
+      <p id="win-text"></p>
+      <p id="lose-text"></p>
+      <p id="guess-left-text"></p>
+      <p id="your-guess-text"></p>
+      <p id="total-text"></p>
     </div>
 
+    <script type="text/javascript">
+      //create an arry for all the possible options for computer's guess
 
-        <script type="text/javascript">
-        //create an arry for all the possible options for computer's guess
+      var compGuess = ["a", "e", "i", "o", "u"];
+      // var compGuess = ['a','b','c','d','f','g','h','i','j','k','l','m','n','o','p','q',
+      //     'r','s','t','u','v','w','x','y','z'];
 
-        var compGuess = ['a','e','i', 'o','u'];
-        // var compGuess = ['a','b','c','d','f','g','h','i','j','k','l','m','n','o','p','q',
-        //     'r','s','t','u','v','w','x','y','z'];
-        
+      //create var to store numbers of wins, loses, guess left and user's guess so far
+      var wins = 0;
+      var losses = 0;
+      var guessLeft = "";
+      var yourGuess = "";
+      var totalGames = 10;
 
-        //create var to store numbers of wins, loses, guess left and user's guess so far
-        var wins = 0;
-        var losses = 0;
-        var guessLeft = '';
-        var yourGuess = '';
-        var totalGames = 11;
+      //to show users how many wins, losese, guesses left and their guess so far, will need var that allow us to print or output the result
+      var winsText = document.getElementById("win-text");
+      var losesText = document.getElementById("lose-text");
+      var yourGuessText = document.getElementById("your-guess-text");
+      // var guessLeftText = document.getElementById('guess-left-text');
+      var totalText = document.getElementById("total-text");
 
-        //to show users how many wins, losese, guesses left and their guess so far, will need var that allow us to print or output the result
-        var winsText =document.getElementById('win-text');
-        var losesText = document.getElementById('lose-text');
-        var yourGuessText = document.getElementById('your-guess-text');
-        // var guessLeftText = document.getElementById('guess-left-text');
-        var totalText = document.getElementById('total-text');
+      //prompt to start the game
+      var start = confirm("ready to play? ");
+      var startNow = alert("press any key to start");
 
-        //prompt to start the game
-        var start = confirm('ready to play? ');
-        var startNow = alert('press any key to start');
-
-        // this function runs when the user types on keyboard. the value of users guess will be stored as the userGuess var
-        document.onkeyup = function(event) {
+      // this function runs when the user types on keyboard. the value of users guess will be stored as the userGuess var
+      document.onkeyup = function(event) {
         var userGuess = event.key;
-        var userGuessUp = userGuess.toUpperCase(); 
-            yourGuess =userGuess;
-         //comp randomly chooses a letter from the compGuess array
-        var compChoice = compGuess[Math.floor(Math.random()* compGuess.length)];
+        var userGuessUp = userGuess.toUpperCase();
+        yourGuess = userGuess;
+        //comp randomly chooses a letter from the compGuess array
+        var compChoice =
+          compGuess[Math.floor(Math.random() * compGuess.length)];
 
-         //user has 10 chances to guess. maybe it's better not to have the for loop because the for loop loads automatically when the page runs. we don't know when the user will press a key. if user presses a key, tracks it. 
-        
-            if (userGuess == compChoice) {
-            
-            alert ('Yay! this is what computer chose too! ');  
-            
-            winsText.textContent = 'Wins: ' + wins;
-            wins++;
-            losesText.textContent = 'losses: ' + losses; 
-            totalText.textContent = 'You have ' + (totalGames - wins) + ' guesses left';
-            yourGuessText.textContent = 'Your guesses so far: ' + yourGuess;
-            
-        }else {
-           
-            alert ('Sorry. Keep trying. the computer picked: ' + compChoice); 
-            winsText.textContent = 'Wins: ' + wins;
-            losesText.textContent = 'losses: ' + losses; 
-            losses++;
-            totalText.textContent = 'You have ' + (totalGames - losses )+ ' guesses left';
-            yourGuessText.textContent = 'Your guesses so far: ' + yourGuess;
-            
-            }
-           
-        };
-        
-       
-       
-        </script>
-      </div>
+        //  user has 10 chances to guess. maybe it's better not to have the for loop because the for loop loads automatically
+        //  when the page runs. we don't know when the user will press a key. if user presses a key, tracks it.
 
+        if (userGuess == compChoice) {
+          alert("Yay! this is what computer chose too! ");
+          wins++;
+        } else {
+          alert("Sorry. Keep trying. the computer picked: " + compChoice);
+          losses++;
+        }
+
+        winsText.textContent = "Wins: " + wins;
+        losesText.textContent = "losses: " + losses;
+        totalText.textContent = "Guesses left:" + (totalGames - losses - wins);
+        yourGuessText.textContent = "Your guesses so far: " + yourGuess;
+
+        // need to determine if user wins or no.
+        if (wins + losses == totalGames) {
+          alert("Game Over! ");
+          if (wins > losses) {
+            alert("Congrats! you won! ");
+          } else {
+            alert("Good job but try again. ");
+            document.location.reload();
+          }
+        }
+      };
+    </script>
   </body>
-  </html>
+</html>
