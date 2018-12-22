@@ -27,8 +27,7 @@
       //create var to store numbers of wins, loses, guess left and user's guess so far
       var wins = 0;
       var losses = 0;
-      var guessLeft = "";
-      var yourGuess = "";
+      var yourGuess = [];
       var totalGames = 10;
 
       //to show users how many wins, losese, guesses left and their guess so far, will need var that allow us to print or output the result
@@ -47,6 +46,7 @@
         var userGuess = event.key;
         var userGuessUp = userGuess.toUpperCase();
         yourGuess = userGuess;
+
         //comp randomly chooses a letter from the compGuess array
         var compChoice =
           compGuess[Math.floor(Math.random() * compGuess.length)];
@@ -65,7 +65,7 @@
         winsText.textContent = "Wins: " + wins;
         losesText.textContent = "losses: " + losses;
         totalText.textContent = "Guesses left:" + (totalGames - losses - wins);
-        yourGuessText.textContent = "Your guesses so far: " + yourGuess;
+        yourGuessText.textContent = "Your guesses so far: " +  yourGuess;
 
         // need to determine if user wins or no.
         if (wins + losses == totalGames) {
