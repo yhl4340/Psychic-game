@@ -26,7 +26,7 @@
       <p id="comp-text"></p>
       <p id="win-text"></p>
       <p id="lose-text"></p>
-      <p id="guess-left-text"></p>
+      <p id="total-text"></p>
       <p id="your-guess-text"></p>
       <p id="game-over"><strong>Game Over</strong></p>
       <p id="game-won">Congrats! You won!!!</p>
@@ -85,7 +85,8 @@
         winsText.textContent = "Wins: " + wins;
         losesText.textContent = "Losses: " + losses;
         totalText.textContent = "Guesses left:" + (totalGames - losses - wins);
-        yourGuessText.textContent = "Your guesses so far: " + yourGuesses.toString();
+        yourGuessText.textContent =
+          "Your guesses so far: " + yourGuesses.toString();
 
         // need to determine if user wins or no.
         if (wins + losses == totalGames) {
