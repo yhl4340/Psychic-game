@@ -37,9 +37,33 @@
     <script type="text/javascript">
       //create an arry for all the possible options for computer's guess
 
-      var compGuess = ["a", "e", "i", "o", "u"];
-      // var compGuess = ['a','b','c','d','f','g','h','i','j','k','l','m','n','o','p','q',
-      //     'r','s','t','u','v','w','x','y','z'];
+      var compGuess = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ];
 
       //create var to store numbers of wins, loses, guess left and user's guess so far
       var wins = 0;
@@ -74,7 +98,7 @@
         //  user has 10 chances to guess. maybe it's better not to have the for loop because the for loop loads automatically
         //  when the page runs. we don't know when the user will press a key. if user presses a key, tracks it.
 
-        if (userGuess == compChoice) {
+        if (userGuess == compChoice || userGuessUp == compChoice) {
           alert("Yay! this is what computer chose too! ");
           wins++;
         } else {
